@@ -14,7 +14,8 @@ const displayTree = (trees) => {
         
         const btnDiv = document.createElement("div");
         btnDiv.innerHTML = `
-                <button class="w-60 border-none bg-sky-100 text-gray-500 text-2xl mt-5">${tree.category_name}</button>
+            <button class="w-60 border-none bg-sky-100 text-gray-500 text-2xl mt-5 hover:bg-green-600 hover:text-white rounded-xl">
+            ${tree.category_name}</button>
 
         `;
 
