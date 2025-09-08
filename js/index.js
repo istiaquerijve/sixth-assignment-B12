@@ -28,6 +28,32 @@ const loadTreeCard = (id) => {
     )
 };
 
+// modal 
+const loadTreeDetail = async (id) => {
+    const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+    const res = await fetch(url);   
+    const details = await res.json();
+    displayTreeDetails(details.plants);
+}
+
+const displayTreeDetails = (card) => {
+    console.log(card);
+    
+    const detailBox = document.getElementById("detail-container")
+    detailBox.innerHTML = `
+        <div class="p-5">
+                <h1 class="font-bold text-3xl m-3">${card.name}</h1>
+                <img class="m-3" src="${card.image}" alt="">
+                <h2 class="m-3">Category: ${card.category}</h2>
+                <h2 class="m-3">Price: $${card.price}</h2>
+                <p class="m-3">Description: ${card.description}</p>
+        </div>  
+    `;
+    document.getElementById("my_modal_1").showModal();
+}
+
+// modal end 
+
 const displayTreeCard = (cards) => {
     // console.log(cards);
     const cardContainer = document.getElementById("card-container")
@@ -40,7 +66,7 @@ const displayTreeCard = (cards) => {
             <div class="bg-white h-full w-66 rounded-lg">
                   <div class="p-6">
                     <img class="rounded-lg" src="${card.image}" alt="">
-                    <h1 onclick="my_modal_1.showModal()" class="font-bold text-2xl mt-2">${card.name}</h1>
+                    <h1 onclick="loadTreeDetail(${card.id})" class="font-bold text-2xl mt-2">${card.name}</h1>
                     <p class="font-semibold text-gray-600 mt-2">${card.description}</p>
                     <div class="mt-2 flex justify-between">
                       <button class="bg-green-200 text-green-700 border-none rounded-2xl w-30">${card.category}</button>
@@ -64,7 +90,8 @@ const displayTree = (trees) => {
         
         const btnDiv = document.createElement("div");
         btnDiv.innerHTML = `
-            <button id="card-btn-${tree.id}" onclick = "loadTreeCard(${tree.id})" class="card-btn w-60 border-none bg-sky-100 text-gray-500            text-2xl mt-5 hover:bg-green-600 hover:text-white rounded-xl">
+            <button id="card-btn-${tree.id}" onclick = "loadTreeCard(${tree.id})" class="card-btn w-60 border-none bg-sky-100 text-gray-500 
+            text-2xl mt-5 hover:bg-green-600 hover:text-white rounded-xl">
             ${tree.category_name}</button>
 
         `;
