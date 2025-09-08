@@ -11,7 +11,12 @@ const loadTreeCard = (id) => {
     // console.log(url);
     fetch(url)
     .then((res) => res.json())
-    .then((data) => displayTreeCard(data.plants)
+    .then((data) => {
+        const clickBtn = document.getElementById(`card-btn-${id}`)
+        clickBtn.classList.add("active")
+
+        displayTreeCard(data.plants)
+    }
     )
 };
 
@@ -31,9 +36,10 @@ const displayTreeCard = (cards) => {
                     <p class="font-semibold text-gray-600 mt-2">${card.description}</p>
                     <div class="mt-2 flex justify-between">
                       <button class="bg-green-200 text-green-700 border-none rounded-2xl w-30">${card.category}</button>
-                      <h1 class="font-bold text-2xl">${card.price}</h1>
+                      <h1 class="font-bold text-2xl">$${card.price}</h1>
                     </div>
-                    <button class="border-none bg-green-600 text-white text-3xl w-full mt-2 justify-center rounded-xl">Add to Cart</button>
+                    <button class="border-none bg-green-600 text-white text-3xl w-full mt-2 justify-center rounded-xl">Add to Cart
+                    </button>
                   </div>
             </div>
         `;
@@ -50,7 +56,7 @@ const displayTree = (trees) => {
         
         const btnDiv = document.createElement("div");
         btnDiv.innerHTML = `
-            <button onclick = "loadTreeCard(${tree.id})" class="w-60 border-none bg-sky-100 text-gray-500 text-2xl mt-5
+            <button id="card-btn-${tree.id}" onclick = "loadTreeCard(${tree.id})" class="w-60 border-none bg-sky-100 text-gray-500 text-2xl mt-5
              hover:bg-green-600 hover:text-white rounded-xl">
             ${tree.category_name}</button>
 
