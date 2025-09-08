@@ -18,13 +18,24 @@ const loadTreeCard = (id) => {
 const displayTreeCard = (cards) => {
     // console.log(cards);
     const cardContainer = document.getElementById("card-container")
-    // cardContainer.innerHTML = "";
+    cardContainer.innerHTML = "";
 
     cards.forEach((card) => {
         console.log(card);
         const pCard = document.createElement("div")
         pCard.innerHTML = `
-            <p>ok</p>
+            <div class="bg-white h-full w-66 rounded-lg">
+                  <div class="p-6">
+                    <img class="rounded-lg" src="${card.image}" alt="">
+                    <h1 class="font-bold text-2xl mt-2">${card.name}</h1>
+                    <p class="font-semibold text-gray-600 mt-2">${card.description}</p>
+                    <div class="mt-2 flex justify-between">
+                      <button class="bg-green-200 text-green-700 border-none rounded-2xl w-30">${card.category}</button>
+                      <h1 class="font-bold text-2xl">${card.price}</h1>
+                    </div>
+                    <button class="border-none bg-green-600 text-white text-3xl w-full mt-2 justify-center rounded-xl">Add to Cart</button>
+                  </div>
+            </div>
         `;
         cardContainer.append(pCard)
     })
