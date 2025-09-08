@@ -5,6 +5,13 @@ const loadTree = () => {
     );
 };
 
+const removeActive = () => {
+    const treeButton = document.querySelectorAll(".card-btn")
+    treeButton.forEach((clickBtn) => clickBtn.classList.remove("active"))
+}
+
+
+
 const loadTreeCard = (id) => {
     // console.log(id);
     const url = `https://openapi.programming-hero.com/api/category/${id}`;
@@ -56,8 +63,8 @@ const displayTree = (trees) => {
         
         const btnDiv = document.createElement("div");
         btnDiv.innerHTML = `
-            <button id="card-btn-${tree.id}" onclick = "loadTreeCard(${tree.id})" class="w-60 border-none bg-sky-100 text-gray-500 text-2xl mt-5
-             hover:bg-green-600 hover:text-white rounded-xl">
+            <button id="card-btn-${tree.id}" onclick = "loadTreeCard(${tree.id})" class="w-60 border-none bg-sky-100 text-gray-500 
+            text-2xl mt-5 hover:bg-green-600 hover:text-white rounded-xl card-btn">
             ${tree.category_name}</button>
 
         `;
