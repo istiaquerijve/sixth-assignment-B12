@@ -13,6 +13,7 @@ const removeActive = () => {
 
 
 const loadTreeCard = (id) => {
+    mSpinner(true);
     // console.log(id);
     const url = `https://openapi.programming-hero.com/api/category/${id}`;
     // console.log(url);
@@ -43,7 +44,7 @@ const displayTreeDetails = (card) => {
     detailBox.innerHTML = `
         <div class="p-5">
                 <h1 class="font-bold text-3xl m-3">${card.name}</h1>
-                <img class="m-3" src="${card.image}" alt="">
+                <img class="m-3 rounded-lg" src="${card.image}" alt="">
                 <h2 class="m-3">Category: ${card.category}</h2>
                 <h2 class="m-3">Price: $${card.price}</h2>
                 <p class="m-3">Description: ${card.description}</p>
@@ -53,6 +54,21 @@ const displayTreeDetails = (card) => {
 }
 
 // modal end 
+
+// spinner 
+const mSpinner = (status) => {
+    if(status == true){
+        document.getElementById("spinner").classList.remove("hidden")
+        document.getElementById("card-container").classList.add("hidden")
+    }
+    else {
+        document.getElementById("card-container").classList.remove("hidden")
+        document.getElementById("spinner").classList.add("hidden")
+    }
+}
+
+
+// spinner end 
 
 const displayTreeCard = (cards) => {
     // console.log(cards);
@@ -78,7 +94,8 @@ const displayTreeCard = (cards) => {
             </div>
         `;
         cardContainer.append(pCard)
-    })
+    });
+    mSpinner(false);
 };
 
 const displayTree = (trees) => {
